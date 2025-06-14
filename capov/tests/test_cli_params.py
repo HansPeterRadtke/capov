@@ -3,9 +3,10 @@ import subprocess
 import os
 import shutil
 
+
 class TestCapOvCLI(unittest.TestCase):
   base_path = "capov/tests/faulty_scripts/faulty_imports_inside_func.py"
-  tmp_path = "capov/tests/tmp_faulty_copy.py"
+  tmp_path  = "capov/tests/tmp_faulty_copy.py"
 
   def setUp(self):
     shutil.copy2(self.base_path, self.tmp_path)
@@ -56,3 +57,4 @@ class TestCapOvCLI(unittest.TestCase):
 
 if __name__ == '__main__':
   unittest.main()
+

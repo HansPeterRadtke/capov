@@ -11,12 +11,12 @@ def fix_missing_imports(code: str) -> str:
 
 
 def remove_duplicate_imports(code: str) -> str:
-  seen = set()
+  seen   = set()
   result = []
   for line in code.splitlines():
-    if (line.startswith("import") or line.startswith("from")) and line in seen:
+    if  ((line.startswith("import") or line.startswith("from")) and (line in seen)):
       continue
-    seen.add(line)
+    seen  .add   (line)
     result.append(line)
   return "\n".join(result)
 
@@ -24,7 +24,7 @@ def remove_duplicate_imports(code: str) -> str:
 def fix_trailing_commas(code: str) -> str:
   lines = code.split('\n')
   for i, line in enumerate(lines):
-    if re.search(r',\s*$', line.strip()):
+    if  (re.search(r',\s*$', line.strip())):
       lines[i] = re.sub(r',\s*$', '', line)
   fixed_code = '\n'.join(lines)
   fixed_code = re.sub(r",\s*\]", "]", fixed_code)
@@ -33,16 +33,16 @@ def fix_trailing_commas(code: str) -> str:
 
 
 def fix_unclosed_brackets(code: str) -> str:
-  lines = code.splitlines()
+  lines       = code.splitlines()
   fixed_lines = []
-  brackets = {'(': ')', '[': ']', '{': '}'}
-  closers = {')', ']', '}'}
+  brackets    = {'(': ')', '[': ']', '{': '}'}
+  closers     = {')', ']', '}'}
   for line in lines:
     stack = []
     for ch in line:
-      if ch in brackets:
+      if  (ch in brackets):
         stack.append(brackets[ch])
-      elif ch in closers and stack and ch == stack[-1]:
+      elif((ch in closers) and stack and (ch == stack[-1])):
         stack.pop()
     fixed_lines.append(line + ''.join(reversed(stack)))
   return '\n'.join(fixed_lines)
@@ -65,3 +65,4 @@ def process(code: str, revise: bool = False) -> str:
   if revise:
     code = revise_code(code)
   return code
+
