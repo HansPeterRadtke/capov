@@ -4,10 +4,10 @@ import os
 import shutil
 
 class TestFullCLI(unittest.TestCase):
-  base = "capov/tests/faulty_scripts/faulty_full_combo_case.py"
-  tmp = "capov/tests/tmp_full_combo.py"
+  base   = "capov/tests/faulty_scripts/faulty_full_combo_case.py"
+  tmp    = "capov/tests/tmp_full_combo.py"
   output = "capov/tests/tmp_output.py"
-  log = "capov/tests/tmp_log.txt"
+  log    = "capov/tests/tmp_log.txt"
 
   def setUp(self):
     with open(self.base, 'w') as f:
@@ -58,3 +58,4 @@ class TestFullCLI(unittest.TestCase):
 
 if __name__ == '__main__':
   unittest.main()
+
