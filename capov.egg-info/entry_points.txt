@@ -1,3 +1,0 @@
-[console_scripts]
-capov = capov.__main__:main
-captain-obvious = capov.__main__:main
