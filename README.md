@@ -68,7 +68,7 @@ python -m unittest discover capov/tests
 
 ### Option 1: GitHub clone
 ```bash
-git clone https://github.com/YOURUSERNAME/capov.git
+git clone https://github.com/HansPeterRadtke/capov.git
 cd capov
 ```
 
@@ -83,4 +83,5 @@ cd capov_extracted
 
 CapOv is your cleanup butler. Let him sweep the dumb bugs so you don't have to.
 
-> Submit bugs or contribute: https://github.com/YOURUSERNAME/capov
+> Submit bugs or contribute: https://github.com/HansPeterRadtke/capov
+
