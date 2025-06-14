@@ -1,1 +1,4 @@
 .git-credentials
+capov/__pycache__/*.*.*
+capov/test/__pycache__/*/
+
