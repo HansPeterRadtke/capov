@@ -25,7 +25,7 @@ x = [1, 2, 3,
 print(json.dumps(x)
 '''
 
-fixed = process(code, revise=True)
+fixed = process(code)
 print(fixed)
 ```
 
@@ -58,9 +58,10 @@ python -m unittest discover capov/tests
   - `__main__.py` — CLI entry point
   - `example.py` — example usage
   - `tests/`
-    - `test_fixers.py` — function tests
-    - `test_cli_params.py` — CLI tests
-    - `faulty_scripts/` — broken Python samples (excluded from PyPI)
+    - `test_cli_full.py` — full run tests
+    - `test_cli_params.py` — CLI parameter tests
+    - `test_module_usage.py` — module usage tests
+    - `faulty_scripts/` — broken Python samples
 
 ---
 
@@ -84,4 +85,3 @@ cd capov_extracted
 CapOv is your cleanup butler. Let him sweep the dumb bugs so you don't have to.
 
 > Submit bugs or contribute: https://github.com/HansPeterRadtke/capov
-
