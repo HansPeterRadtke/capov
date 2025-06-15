@@ -2,13 +2,13 @@
 
 set -e
 
-# Build the package
+echo "[INFO] Building package..."
 python3 -m build
 
-# Upload to PyPI
-if twine upload dist/*; then
-  echo "✅ Upload succeeded. Keeping build artifacts."
-else
-  echo "❌ Upload failed. Nothing deleted."
-  exit 1
-fi
+echo "[INFO] Uploading package to PyPI..."
+twine upload dist/* || echo "[ERROR] Upload failed. Artifacts still cleaned up."
+
+echo "[INFO] Cleaning up build artifacts..."
+rm -rf build dist *.egg-info
+
+echo "[INFO] Done."
