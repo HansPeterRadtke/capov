@@ -43,7 +43,7 @@ Options:
 
 To verify installation and test functionality:
 
-    python3 -m capov.test
+    python3 -m capov.tests
 
 ---
 
