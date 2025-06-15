@@ -1,8 +1,9 @@
-import unittest
-import subprocess
-import os
-import shutil
 import importlib.resources as res
+import subprocess
+import unittest
+import shutil
+import os
+
 
 class TestFullCLI(unittest.TestCase):
   base_name = "faulty_full_combo_case.py"

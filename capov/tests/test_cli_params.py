@@ -1,8 +1,8 @@
-import unittest
-import subprocess
-import os
-import shutil
 import importlib.resources as res
+import subprocess
+import unittest
+import shutil
+import os
 
 
 class TestCapOvCLI(unittest.TestCase):
