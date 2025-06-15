@@ -8,11 +8,8 @@ authors = [
 ]
 license = { text = "MIT" }
 requires-python = ">=3.11"
-requires = [
-  "autoimport >= 1.0.0, < 2.0.0"
-]
 dependencies = [
-  "autoimport"
+  "autoimport >= 1.0.0, < 2.0.0"
 ]
 
 [project.optional-dependencies]
