@@ -27,4 +27,5 @@ build-backend = "setuptools.build_meta"
 "capov" = ["example.py", "tests/*.py", "tests/faulty_scripts/*.py"]
 
 [tool.setuptools]
+include-package-data = true
 license-files = []
