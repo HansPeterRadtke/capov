@@ -2,15 +2,18 @@ import unittest
 import subprocess
 import os
 import shutil
+import importlib.resources as res
 
 class TestFullCLI(unittest.TestCase):
-  base   = "capov/tests/faulty_scripts/faulty_full_combo_case.py"
-  tmp    = "capov/tests/tmp_full_combo.py"
-  output = "capov/tests/tmp_output.py"
-  log    = "capov/tests/tmp_log.txt"
+  base_name = "faulty_full_combo_case.py"
+  tmp       = "capov/tests/tmp_full_combo.py"
+  output    = "capov/tests/tmp_output.py"
+  log       = "capov/tests/tmp_log.txt"
 
   def setUp(self):
     print("\n=== Setting up test: Full CLI test ===")
+    with res.path("capov.tests.faulty_scripts", self.base_name) as p:
+      self.base = str(p)
     with open(self.base, 'w') as f:
       f.write('''import os\nimport os\n\ndef func():\n  return math.sqrt(4)\n\ndef other():\n  return datetime.now()\n\ndata = [1,2,3,]\nx = (5 + 3\nprint(json.dumps(data))''')
     shutil.copy2(self.base, self.tmp)

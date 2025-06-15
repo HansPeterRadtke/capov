@@ -2,16 +2,18 @@ import unittest
 import subprocess
 import os
 import shutil
+import importlib.resources as res
 
 
 class TestCapOvCLI(unittest.TestCase):
-  base_path = "capov/tests/faulty_scripts/faulty_imports_inside_func.py"
+  base_name = "faulty_imports_inside_func.py"
   tmp_path  = "capov/tests/tmp_faulty_copy.py"
 
   def setUp(self):
     print("\n=== Setting up test: CLI tests ===")
     print("Copying test file to:", self.tmp_path)
-    shutil.copy2(self.base_path, self.tmp_path)
+    with res.path("capov.tests.faulty_scripts", self.base_name) as p:
+      shutil.copy2(str(p), self.tmp_path)
 
   def tearDown(self):
     print("Cleaning up test artifacts...")
