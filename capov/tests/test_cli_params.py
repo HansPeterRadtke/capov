@@ -1,16 +1,18 @@
 import importlib.resources as res
 import subprocess
 import unittest
+import tempfile
 import shutil
 import os
 
 
 class TestCapOvCLI(unittest.TestCase):
   base_name = "faulty_imports_inside_func.py"
-  tmp_path  = "capov/tests/tmp_faulty_copy.py"
 
   def setUp(self):
     print("\n=== Setting up test: CLI tests ===")
+    self.tmp_dir = tempfile.gettempdir()
+    self.tmp_path = os.path.join(self.tmp_dir, "tmp_faulty_copy.py")
     print("Copying test file to:", self.tmp_path)
     with res.path("capov.tests.faulty_scripts", self.base_name) as p:
       shutil.copy2(str(p), self.tmp_path)
@@ -23,7 +25,8 @@ class TestCapOvCLI(unittest.TestCase):
         print("Deleted:", self.tmp_path + suffix)
       except FileNotFoundError:
         pass
-    for tmp in ["capov/tests/tmp_output.py", "capov/tests/tmp_log.txt"]:
+    for tmp_name in ["tmp_output.py", "tmp_log.txt"]:
+      tmp = os.path.join(self.tmp_dir, tmp_name)
       try:
         os.remove(tmp)
         print("Deleted:", tmp)
@@ -48,9 +51,10 @@ class TestCapOvCLI(unittest.TestCase):
 
   def test_output_file(self):
     print("\n--- Running CLI test: --output mode ---")
-    subprocess.run(["python3", "-m", "capov", self.tmp_path, "--output", "capov/tests/tmp_output.py"])
-    assert os.path.exists("capov/tests/tmp_output.py")
-    with open("capov/tests/tmp_output.py") as f:
+    output_path = os.path.join(self.tmp_dir, "tmp_output.py")
+    subprocess.run(["python3", "-m", "capov", self.tmp_path, "--output", output_path])
+    assert os.path.exists(output_path)
+    with open(output_path) as f:
       self._validate_output(f.read())
     print("SUCCESS: CLI --output mode passed.")
 
@@ -65,7 +69,7 @@ class TestCapOvCLI(unittest.TestCase):
 
   def test_verbose_log(self):
     print("\n--- Running CLI test: --verbose --log ---")
-    log_path = "capov/tests/tmp_log.txt"
+    log_path = os.path.join(self.tmp_dir, "tmp_log.txt")
     result = subprocess.run([
       "python3", "-m", "capov", self.tmp_path,
       "--in-place", "--verbose", "--log", log_path

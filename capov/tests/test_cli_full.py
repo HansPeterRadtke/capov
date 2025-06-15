@@ -1,18 +1,21 @@
 import importlib.resources as res
 import subprocess
 import unittest
+import tempfile
 import shutil
 import os
 
 
 class TestFullCLI(unittest.TestCase):
   base_name = "faulty_full_combo_case.py"
-  tmp       = "capov/tests/tmp_full_combo.py"
-  output    = "capov/tests/tmp_output.py"
-  log       = "capov/tests/tmp_log.txt"
 
   def setUp(self):
     print("\n=== Setting up test: Full CLI test ===")
+    self.tmp_dir = tempfile.gettempdir()
+    self.tmp     = os.path.join(self.tmp_dir, "tmp_full_combo.py")
+    self.output  = os.path.join(self.tmp_dir, "tmp_output.py")
+    self.log     = os.path.join(self.tmp_dir, "tmp_log.txt")
+
     with res.path("capov.tests.faulty_scripts", self.base_name) as p:
       self.base = str(p)
     with open(self.base, 'w') as f:

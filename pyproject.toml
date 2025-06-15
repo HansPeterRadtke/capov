@@ -1,6 +1,6 @@
 [project]
 name = "capov"
-version = "0.1.5"
+version = "0.1.6"
 description = "Captain Obvious: Corrects all the obvious errors in a Python-script."
 readme = "README.md"
 authors = [
